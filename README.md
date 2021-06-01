@@ -9,8 +9,6 @@
  -  Login Page - log in with email/password JWT token using bcrypt
 3. ###  Home page:  
  - 
- Anonymouse users see a list of jobs and sign up routes. If they try to click a job or favorite, they will be redirected to the sign up page.  
-4. ###  Features:  
  -  
 5. ### User Profile Page:
  -  
