@@ -17,10 +17,11 @@ CREATE TABLE services (
     posted_by VARCHAR (25)
         REFERENCES users ON DELETE CASCADE,
     liked_by VARCHAR (25)
-        REFERENCES users ON DELETE CASCADE
+        REFERENCES users ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE for_sale (
+CREATE TABLE sales (
     id SERIAL PRIMARY KEY,
     item_name VARCHAR(25) NOT NULL,
     item_info TEXT NOT NULL,
@@ -28,25 +29,28 @@ CREATE TABLE for_sale (
         posted_by VARCHAR (25)
         REFERENCES users ON DELETE CASCADE,
     liked_by VARCHAR (25)
-        REFERENCES users ON DELETE CASCADE
+        REFERENCES users ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE services_comment (
+CREATE TABLE services_comments (
     username VARCHAR(25) 
         REFERENCES users ON DELETE CASCADE,
     services_id INTEGER
         REFERENCES services ON DELETE CASCADE,
-    PRIMARY KEY (username, services_id)
-    comment_text TEXT NOT NULL
+    PRIMARY KEY (username, services_id),
+    comment_text TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE for_sale_comment (
+CREATE TABLE sales_comments (
     username VARCHAR(25) 
         REFERENCES users ON DELETE CASCADE,
-    for_sale_id INTEGER
-        REFERENCES for_sale ON DELETE CASCADE,
-    PRIMARY KEY (username, for_sale_id)
-    comment_text TEXT NOT NULL
+    sales_id INTEGER
+        REFERENCES sales ON DELETE CASCADE,
+    PRIMARY KEY (username, sales_id),
+    comment_text TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE services_likes (
@@ -58,10 +62,10 @@ CREATE TABLE services_likes (
     PRIMARY KEY (username, services_id)
 );
 
-CREATE TABLE for_sale_likes (
+CREATE TABLE sales_likes (
     username VARCHAR(25) 
         REFERENCES users ON DELETE CASCADE,
-    for_sale_id INTEGER
-        REFERENCES for_sale ON DELETE CASCADE,
-    PRIMARY KEY (username, for_sale_id)
+    sales_id INTEGER
+        REFERENCES sales ON DELETE CASCADE,
+    PRIMARY KEY (username, sales_id)
 );
