@@ -7,10 +7,11 @@ const cors = require("cors");
 
 const { NotFoundError } = require("./expressError");
 
-const apiRoute = require("./routes/api")
 const { authenticateJWT } = require("./middleware/auth");
 const authRoutes = require("./routes/auth");
 const usersRoutes = require("./routes/users");
+const servicesRoutes = require("./routes/services")
+const salesRoutes = require("./routes/sales")
 
 
 const morgan = require("morgan");
@@ -20,11 +21,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
-// app.use(authenticateJWT);
+app.use(authenticateJWT);
 
-app.use("/api", apiRoute)
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
+app.use("/services", servicesRoutes);
+app.use("/sales", salesRoutes);
 
 
 /** Handle 404 errors -- this matches everything */

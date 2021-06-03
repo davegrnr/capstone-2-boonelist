@@ -32,5 +32,5 @@ INSERT INTO sales (item_name, item_info, price)
 VALUES (
         'Legos',
         'Dont step on them!',
-        33,
-);
+        33
+        );
