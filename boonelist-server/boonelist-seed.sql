@@ -33,4 +33,9 @@ VALUES (
         'Legos',
         'Dont step on them!',
         33
+        ),
+        (
+        'Rocking chair',
+        'Great condition',
+        70
         );

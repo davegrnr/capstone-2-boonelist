@@ -81,9 +81,11 @@ class Sale {
             [id]
         );
 
+        const sale = result.rows[0];
+
         if(!sale) throw new NotFoundError(`No item with id: ${id}`)
 
-        return result.rows[0];
+        return sale;
     }
 
     static async update(id, data) {

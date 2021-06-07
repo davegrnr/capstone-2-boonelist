@@ -143,6 +143,8 @@ class User {
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
+    return user;
+
     // const userApplicationsRes = await db.query(
     //       `SELECT a.job_id
     //        FROM applications AS a

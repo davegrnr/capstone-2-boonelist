@@ -75,9 +75,11 @@ class Service {
             [id]
         );
 
+        const service = result.rows[0]
+
         if(!service) throw new NotFoundError(`No service with id: ${id}`)
 
-        return result.rows[0];
+        return service
     }
 
     static async update(id, data) {
@@ -99,11 +101,11 @@ class Service {
                                     liked_by AS "likedBy",
                                     created_at AS "createdAt"`;
         const result = await db.query(querySql, [...values, id]);
-        const company = result.rows[0];
+        const service = result.rows[0];
     
-        if (!company) throw new NotFoundError(`No company: ${id}`);
+        if (!service) throw new NotFoundError(`No service: ${id}`);
     
-        return company;
+        return service;
     }
 
     /** Delete given service from database and return undefined
