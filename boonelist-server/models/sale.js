@@ -18,26 +18,29 @@ class Sale {
      * Returns {title, pay, itemInfo, createdAt}
     */
 
-    static async create({itemName, itemInfo, price}) {
+     static async create({itemName, price, itemInfo, postedBy}) {
 
         const result = await db.query(
             `INSERT INTO sales
-            (item_name, item_info, price)
-            VALUES ($1, $2, $3)
+            (item_name, price, item_info, posted_by)
+            VALUES ($1, $2, $3, $4)
             RETURNING 
-                item_name AS "itemName",
-                item_info AS "itemInfo",
-                price`,
+            item_name AS "itemName", 
+            price, 
+            item_info AS "itemInfo",
+            posted_by as "postedBy"`,
             [
                 itemName,
+                price,
                 itemInfo,
-                price
+                postedBy
             ]
         );
 
+
         const sale = result.rows[0];
 
-        return sale;
+        return sale
     }
 
 
@@ -47,7 +50,7 @@ class Sale {
 
     static async findAll(){
         const result = await db.query(
-            `SELECT
+            `SELECT id,
                     item_name AS "itemName",
                     item_info AS "itemInfo",
                     price,

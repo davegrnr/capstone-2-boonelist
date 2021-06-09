@@ -87,8 +87,8 @@ class User {
           hashedPassword,
           firstName,
           lastName,
-          email,
           phone,
+          email,
           isAdmin,
         ],
     );

@@ -49,13 +49,6 @@ class BoonelistApi {
             return res.token
         }
 
-        // Log user in from form data
-
-        static async login(data) {
-            let res = await this.request(`auth/login`, data, "post");
-            return res.token;
-        }
-
         // log user in and assign token
 
         static async login(data) {
@@ -63,9 +56,32 @@ class BoonelistApi {
             return res.token;
         }
 
+        // Update user profile from form data
+
+        static async saveProfile(username, data) {
+            let res = await this.request(`users/${username}`, data, "patch");
+            return res.user;
+        }
+
+        // Get list of services, filter by title if search used
+
         static async getServices(title){
             let res = await this.request(`services`, { title })
             return res.services
+        }
+
+        // Create new service with data and save to backend
+
+        static async createService(data, username){
+            let res = await this.request(`services/new`, {...data, postedBy: username}, "post");
+            return res.service
+        }
+
+        // Create new sale with data and save to backend
+
+        static async createSale(data, username){
+            let res = await this.request(`sales/new`, {...data, postedBy: username}, "post");
+            return res.sale
         }
 
         static async getSales(itemName){

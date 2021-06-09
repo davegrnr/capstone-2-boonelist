@@ -41,8 +41,9 @@ router.get("/", async function(req, res, next) {
  * Auth required: logged in
  */
 
-router.post("/", async function(req, res, next) {
+router.post("/new", ensureLoggedIn, async function(req, res, next) {
     try{
+        console.log(req.body)
         const service = await Service.create(req.body);
         return res.status(201).json({service})
     } catch(err) {

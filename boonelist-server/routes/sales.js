@@ -40,7 +40,7 @@ router.get("/", async function(req, res, next) {
  * Auth required: logged in
  */
 
-router.post("/", async function(req, res, next) {
+router.post("/new", async function(req, res, next) {
     try{
         const sale = await Sale.create(req.body);
         return res.status(201).json({sale})

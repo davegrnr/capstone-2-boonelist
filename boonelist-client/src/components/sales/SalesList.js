@@ -18,7 +18,7 @@ function SalesList() {
     if(!sales) return <LoadingSpinner />
 
     return (
-        <div classname="SalesList">
+        <div className="SalesList">
             <h1>List of Sales</h1>
             {sales.length
             ? (

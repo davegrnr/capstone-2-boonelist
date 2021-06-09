@@ -12,6 +12,7 @@ function ServiceCard({id, title, pay, serviceInfo, postedBy, createdAt}) {
                 <p>{pay}</p>
                 <p>{serviceInfo}</p>
                 <p>{postedBy}</p>
+                <p>Posted :{createdAt}</p>
 
             </div>
         </Link>

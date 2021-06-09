@@ -18,7 +18,7 @@ function ServicesList() {
     if(!services) return <LoadingSpinner />
 
     return (
-        <div classname="ServicesList">
+        <div className="ServicesList">
             <h1>List of Services</h1>
             {services.length
             ? (
@@ -30,6 +30,7 @@ function ServicesList() {
                             info={s.serviceInfo}
                             pay={s.pay}
                             postedBy={s.postedBy}
+                            createdAt={s.createdAt}
                         />
                     ))}
                     </div>

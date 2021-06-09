@@ -18,22 +18,39 @@ class Service {
      * Returns {title, pay, serviceInfo, postedBy, createdAt}
     */
 
-    static async create({title, pay, serviceInfo}) {
+    static async create({title, pay, serviceInfo, postedBy}) {
 
         const result = await db.query(
             `INSERT INTO services
-            (title, pay, service_info)
-            VALUES ($1, $2, $3)
+            (title, pay, service_info, posted_by)
+            VALUES ($1, $2, $3, $4)
             RETURNING 
             title, 
             pay, 
-            service_info AS "serviceInfo"`,
+            service_info AS "serviceInfo",
+            posted_by as "postedBy"`,
             [
                 title,
                 pay,
-                serviceInfo
+                serviceInfo,
+                postedBy
             ]
         );
+
+        // const result = await db.query(
+        //     `INSERT INTO services
+        //     (title, pay, service_info)
+        //     VALUES ($1, $2, $3)
+        //     RETURNING 
+        //     title, 
+        //     pay, 
+        //     service_info AS "serviceInfo"`,
+        //     [
+        //         title,
+        //         pay,
+        //         serviceInfo
+        //     ]
+        // );
 
         const service = result.rows[0];
 
@@ -42,7 +59,8 @@ class Service {
 
     static async findAll(){
         const result = await db.query(
-            `SELECT title,
+            `SELECT id,
+                    title,
                     pay,
                     service_info AS "serviceInfo",
                     posted_by AS "postedBy",
