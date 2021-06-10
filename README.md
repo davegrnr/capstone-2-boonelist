@@ -1,5 +1,13 @@
 # BooneList
 
+## Initialization
+ - boonelist-client/ 
+    - "npm install"
+ - boonelist-server/ 
+   - "npm install"
+   - "psql < boonelist.sql"
+   - "npm start"
+
 # Project Objective:
 1. ### Actors Involved:  
  - User: Create a profile, make/remove new items posts, make/remove new services posts, edit profile, comment on other user posts, like other user posts.
