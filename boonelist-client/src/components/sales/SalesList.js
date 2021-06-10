@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import BoonelistApi from '../../api/api'
 import SalesCard from './SalesCard'
 import LoadingSpinner from '../../common/LoadingSpinner'
@@ -19,16 +20,21 @@ function SalesList() {
 
     return (
         <div className="SalesList">
-            <h1>List of Sales</h1>
+            <h1>Items for Sale</h1>
+            <div className="NewSalesForm-link">
+                <Link to="/sales/new">Post New Item</Link>
+            </div>
             {sales.length
             ? (
                 <div className="SalesList-list">
                     {sales.map(s => (
                         <SalesCard
                             key={s.id}
+                            id={s.id}
                             name={s.itemName}
                             info={s.itemInfo}
                             price={s.price}
+                            createdAt={s.createdAt}
                             postedBy={s.postedBy}
                         />
                     ))}

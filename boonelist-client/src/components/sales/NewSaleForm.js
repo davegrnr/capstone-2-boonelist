@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Alert from '../../common/Alert'
 import BoonelistApi from '../../api/api'
 import UserContext from '../../auth/UserContext'
+import './NewSaleForm.css'
 
 /** New sale form
  * Submitting the form creates a new sale with the provided data.
@@ -56,7 +57,7 @@ function NewSaleForm() {
 
     return (
         <div className="NewSaleForm">
-        <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+        <div className="container">
             <h2 className="mb-3">Post New Sale</h2>
             <div className="card">
             <div className="card-body">
@@ -104,6 +105,9 @@ function NewSaleForm() {
                 </button>
                 </form>
             </div>
+                <div>
+                    <Link to="/sales">Go Back</Link>
+                </div>
             </div>
         </div>
         </div>

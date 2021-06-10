@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Alert from '../../common/Alert'
 import BoonelistApi from '../../api/api'
 import UserContext from '../../auth/UserContext'
@@ -104,6 +104,9 @@ function NewServiceForm() {
                 </button>
                 </form>
             </div>
+                <div>
+                    <Link to="/services">Go Back to All Services</Link>
+                </div>
             </div>
         </div>
         </div>

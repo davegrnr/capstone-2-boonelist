@@ -70,6 +70,13 @@ class BoonelistApi {
             return res.services
         }
 
+        // Get single service by id
+        
+        static async getService(id){
+            let res = await this.request(`services/${id}`);
+            return res.service
+        }
+
         // Create new service with data and save to backend
 
         static async createService(data, username){
@@ -88,6 +95,13 @@ class BoonelistApi {
             let res = await this.request(`sales`, { itemName })
             return res.sales
         }
+
+            // Get single sale by id
+    
+            static async getSale(id){
+                let res = await this.request(`sales/${id}`);
+                return res.sale
+            }
 
 }
 

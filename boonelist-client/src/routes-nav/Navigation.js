@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import './Navigation.css'
 import UserContext from '../auth/UserContext'
+import logo from './boonelist.png'
 
 
 /** Navigation bar for the site. Displayed on every page
@@ -62,8 +63,8 @@ function Navigation({ logout }) {
 
     return (
         <nav className="Navigation navbar navbar-expand-md">
-            <Link className="navbar-brand" to="/">
-                Boonelist
+            <Link className="navbar-brand ml-4" to="/">
+                <img src={logo} alt="Logo" width="220px" height="75px"></img>
             </Link>
             {currentUser ? loggedInNav() : loggedOutNav()}
         </nav>

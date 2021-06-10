@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom'
 function SalesCard({id, name, price, info, postedBy, createdAt}) {
 
     return(
-        <Link className="SalesCard card" to={`/sales/${id}`}>
+        <div className="SalesCard card card mb-2 mt-4" to={`/sales/${id}`}>
             <div className="card-body">
-                <h5 className="card-title">
-                    {name}
-                </h5>
-                <p>{price}</p>
-                <p>{info}</p>
-                <p>{postedBy}</p>
+                <Link to={`/sales/${id}`}>
+                    <h5>
+                        {name}
+                    </h5>
+                </Link>
+                <p>${price}</p>
+                <p>Posted: {createdAt}</p>
 
             </div>
-        </Link>
+        </div>
     )
 }
 
