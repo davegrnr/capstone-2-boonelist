@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
 import BoonelistApi from '../../api/api'
 import LoadingSpinner from '../../common/LoadingSpinner'
+import './SalesDetail.css'
 
 /** Sale Detail page
  * 
@@ -32,13 +33,15 @@ function SalesDetail() {
 
     return (
         <div className="SaleDetail">
-            <Link to="/sales">Back to All Sales</Link>
+            <div>
+                <h1>{sale.itemName}</h1>
+                <h3>${sale.price}</h3>
+                <p>{sale.itemInfo}</p>
+            </div>
             <hr />
-            <h1>{sale.itemName}</h1>
-            <h3>${sale.price}</h3>
-            <p>{sale.itemInfo}</p>
-
+            <button className="btn btn-primary"><Link to="/sales" className="sales-link" style={{textDecoration: 'none'}}>Back to All Sales</Link></button>
         </div>
+
     )
 }
 

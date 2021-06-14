@@ -39,3 +39,10 @@ VALUES (
         'Great condition',
         70
         );
+
+INSERT INTO services_comments(posted_by, services_id, comment_text)
+VALUES (
+        'testuser',
+        1,
+        'Ill do it!'
+        );

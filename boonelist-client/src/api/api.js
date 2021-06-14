@@ -80,6 +80,7 @@ class BoonelistApi {
         // Create new service with data and save to backend
 
         static async createService(data, username){
+            console.log(data)
             let res = await this.request(`services/new`, {...data, postedBy: username}, "post");
             return res.service
         }
@@ -87,6 +88,7 @@ class BoonelistApi {
         // Create new sale with data and save to backend
 
         static async createSale(data, username){
+ 
             let res = await this.request(`sales/new`, {...data, postedBy: username}, "post");
             return res.sale
         }
@@ -96,12 +98,19 @@ class BoonelistApi {
             return res.sales
         }
 
-            // Get single sale by id
-    
-            static async getSale(id){
-                let res = await this.request(`sales/${id}`);
-                return res.sale
-            }
+        // Get single sale by id
+
+        static async getSale(id){
+            let res = await this.request(`sales/${id}`);
+            return res.sale
+        }
+
+        // Create a comment for sale or service
+
+        static async createServiceComment(data, id, username){
+            let res = await this.request(`services/${id}`, {data, postedBy: username}, "post");
+            return res.comment
+        }
 
 }
 

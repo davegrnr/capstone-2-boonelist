@@ -98,17 +98,17 @@ function NewSaleForm() {
 
                 <button
                     type="submit"
-                    className="btn btn-primary float-right"
+                    className="btn btn-primary"
                     onSubmit={handleSubmit}
                 >
                     Submit
                 </button>
                 </form>
             </div>
-                <div>
+            </div>
+            <div>
                     <Link to="/sales">Go Back</Link>
                 </div>
-            </div>
         </div>
         </div>
     );

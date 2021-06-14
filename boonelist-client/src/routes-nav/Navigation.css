@@ -4,6 +4,12 @@ nav {
 	justify-content: right;
 }
 
+img {
+	margin-top: -5%;
+	margin-bottom: -8%;
+	margin-left: 10%;
+}
+
 .li {
 	width: 100px;
 	text-align: center;

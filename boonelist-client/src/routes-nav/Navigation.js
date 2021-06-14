@@ -64,7 +64,7 @@ function Navigation({ logout }) {
     return (
         <nav className="Navigation navbar navbar-expand-md">
             <Link className="navbar-brand ml-4" to="/">
-                <img src={logo} alt="Logo" width="220px" height="75px"></img>
+                <img src={logo} alt="Logo" width="240px" height="100px"></img>
             </Link>
             {currentUser ? loggedInNav() : loggedOutNav()}
         </nav>

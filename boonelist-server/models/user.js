@@ -73,15 +73,15 @@ class User {
 
     const result = await db.query(
           `INSERT INTO users
-           (username,
+          (username,
             password,
             first_name,
             last_name,
             phone,
             email,
             is_admin)
-           VALUES ($1, $2, $3, $4, $5, $6, $7)
-           RETURNING username, first_name AS "firstName", last_name AS "lastName", phone, email, is_admin AS "isAdmin"`,
+          VALUES ($1, $2, $3, $4, $5, $6, $7)
+          RETURNING username, first_name AS "firstName", last_name AS "lastName", phone, email, is_admin AS "isAdmin"`,
         [
           username,
           hashedPassword,

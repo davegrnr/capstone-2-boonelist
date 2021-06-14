@@ -33,21 +33,21 @@ CREATE TABLE sales (
 );
 
 CREATE TABLE services_comments (
-    username VARCHAR(25) 
+    id SERIAL PRIMARY KEY,
+    posted_by VARCHAR(25) 
         REFERENCES users ON DELETE CASCADE,
     services_id INTEGER
         REFERENCES services ON DELETE CASCADE,
-    PRIMARY KEY (username, services_id),
     comment_text TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE sales_comments (
-    username VARCHAR(25) 
+    posted_by VARCHAR(25) 
         REFERENCES users ON DELETE CASCADE,
     sales_id INTEGER
         REFERENCES sales ON DELETE CASCADE,
-    PRIMARY KEY (username, sales_id),
+    PRIMARY KEY (posted_by, sales_id),
     comment_text TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );

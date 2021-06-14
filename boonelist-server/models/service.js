@@ -37,20 +37,6 @@ class Service {
             ]
         );
 
-        // const result = await db.query(
-        //     `INSERT INTO services
-        //     (title, pay, service_info)
-        //     VALUES ($1, $2, $3)
-        //     RETURNING 
-        //     title, 
-        //     pay, 
-        //     service_info AS "serviceInfo"`,
-        //     [
-        //         title,
-        //         pay,
-        //         serviceInfo
-        //     ]
-        // );
 
         const service = result.rows[0];
 
@@ -124,6 +110,32 @@ class Service {
         if (!service) throw new NotFoundError(`No service: ${id}`);
     
         return service;
+    }
+
+    /** Create comment for given service id
+     * 
+     */
+
+    static async createComment({id, commentText, postedBy}) {
+
+        const result = await db.query(
+            `INSERT INTO services_comments
+            (services_id, comment_text, posted_by)
+            VALUES ($1, $2, $3)
+            RETURNING
+            services_id AS "servicesId",
+            comment_text AS "commentText",
+            posted_by AS "postedBy"`,
+            [
+                id,
+                commentText,
+                postedBy
+            ]
+        );
+
+        const comment = result.rows[0];
+
+        return comment;
     }
 
     /** Delete given service from database and return undefined

@@ -43,8 +43,8 @@ router.get("/", async function(req, res, next) {
 
 router.post("/new", ensureLoggedIn, async function(req, res, next) {
     try{
-        console.log(req.body)
         const service = await Service.create(req.body);
+        console.log(req.body)
         return res.status(201).json({service})
     } catch(err) {
         return next(err)
@@ -91,6 +91,22 @@ router.patch("/:id", async function (req, res, next) {
         return next(err);
         }
     });
+
+/** POST /[id] 
+ * 
+ * Authorization: Logged in
+*/
+
+router.post("/:id", async function (req, res, next) {
+    try{
+        const comment = await Service.createComment(req.params.id, req.body)
+        console.log(req.body)
+        return res.status(201).json({ comment })
+    } catch(err) {
+        return next(err);
+    }
+})
+
 
 /** DELETE /[id] => {deleted: id}
  * 
