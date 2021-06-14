@@ -38,7 +38,7 @@ CREATE TABLE services_comments (
         REFERENCES users ON DELETE CASCADE,
     services_id INTEGER
         REFERENCES services ON DELETE CASCADE,
-    comment_text TEXT NOT NULL,
+    comment_text TEXT,
     created_at TIMESTAMP DEFAULT NOW()
 );
 

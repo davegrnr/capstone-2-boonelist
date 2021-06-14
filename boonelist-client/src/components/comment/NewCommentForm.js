@@ -9,22 +9,21 @@ import UserContext from "../../auth/UserContext";
  * Routed as /<services_or_sales>/:id
  */
 
-function NewCommentForm({ route, id }) {
+function NewCommentForm({ subjectId }) {
     const { currentUser } = useContext(UserContext)
 
     const [formData, setFormData] = useState({
-        commentText: ""
-    })
-    console.log(formData)
+        commentText: "",
+        subjectId: subjectId,
+        postedBy: currentUser.username
+    });
     const [formErrors, setFormErrors] = useState([]);
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-
-        let username = currentUser.username
+        console.log(formData)
         try {
-            console.log(formData)
-            await BoonelistApi.createServiceComment(formData, id, username);
+            await BoonelistApi.createServiceComment(formData, subjectId);
             alert('Left comment!')
         } catch(errors) {
             setFormErrors(errors)

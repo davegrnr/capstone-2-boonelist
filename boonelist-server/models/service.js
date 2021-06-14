@@ -116,22 +116,44 @@ class Service {
      * 
      */
 
-    static async createComment({id, commentText, postedBy}) {
+    static async createComment({subjectId, commentText, postedBy}){
 
         const result = await db.query(
             `INSERT INTO services_comments
             (services_id, comment_text, posted_by)
             VALUES ($1, $2, $3)
             RETURNING
-            services_id AS "servicesId",
+            services_id AS "subjectId",
             comment_text AS "commentText",
             posted_by AS "postedBy"`,
             [
-                id,
+                subjectId,
                 commentText,
                 postedBy
             ]
         );
+        const comment = result.rows[0]
+
+        return comment;
+    }
+
+    static async createServiceComment({subjectId, commentText, postedBy}) {
+
+        const result = await db.query(
+            `INSERT INTO services_comments
+            (services_id, comment_text posted_by)
+            VALUES ($1, $2, $3)
+            RETURNING 
+            services_id AS "servicesId", 
+            comment_text AS "commentText", 
+            posted_by as "postedBy"`,
+            [
+                subjectId,
+                commentText,
+                postedBy
+            ]
+        );
+
 
         const comment = result.rows[0];
 

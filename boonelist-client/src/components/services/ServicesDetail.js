@@ -33,6 +33,7 @@ function ServicesDetail() {
     }, [id]);
 
     if(!service) return <LoadingSpinner />
+    
 
     return (
         <div className="ServicesDetail">
@@ -49,9 +50,9 @@ function ServicesDetail() {
                 <p>Comments</p>
             </div>
             <div className="comment-form">
-                <NewCommentForm route={route} 
+                <NewCommentForm  
                                 username={currentUser.username}
-                                id={id}
+                                subjectId={id}
                 />
             </div>
             <button className="btn btn-primary"><Link to="/services" className="services-link" style={{textDecoration: 'none'}}>Back to All Services</Link></button>
