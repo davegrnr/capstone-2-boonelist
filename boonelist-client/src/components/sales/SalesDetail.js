@@ -21,21 +21,21 @@ import './SalesDetail.css'
 
 function SalesDetail() {
     const { id } = useParams();
-    const sale_id = id;
     const currentUser = useContext(UserContext);
     const route = 'sales'
 
     const [sale, setSale] = useState()
-    console.log(typeof sale)
 
     useEffect(function getSaleById() {
+        console.log('david')
         async function getSale(){
-            const sale = await BoonelistApi.getSale(id);
+            let sale = (await BoonelistApi.getSale(id))
             setSale(sale)
         }
         getSale();
-
     }, [id]);
+
+
 
 
     if(!sale) return <LoadingSpinner />
@@ -51,18 +51,16 @@ function SalesDetail() {
             <div className="comments">
                 <p>Comments</p>
                 <CommentCardList comments={sale.comments}
-                                route={route}
                 />
             </div>
 
-            {/* <div className="comment-form">
+            <div className="comment-form">
                 <NewCommentForm  
                                 username={currentUser.username}
                                 subjectId={id}
                                 route={route}
-                                commentsArray={sale.comments}
                 />
-            </div> */}
+            </div>
             <button className="btn btn-primary"><Link to="/sales" className="sales-link" style={{textDecoration: 'none'}}>Back to All Sales</Link></button>
         </div>
 

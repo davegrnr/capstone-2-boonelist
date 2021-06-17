@@ -18,8 +18,8 @@ function NewCommentForm({ subjectId, route }) {
     }
 
     const [formData, setFormData] = useState(BASE_STATE);
-
-    const [formErrors, setFormErrors] = useState([]);
+    
+    // const [formErrors, setFormErrors] = useState([]);
 
     async function handleSubmit(evt) {
         evt.preventDefault();

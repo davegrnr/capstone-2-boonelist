@@ -36,7 +36,7 @@ function NewSaleForm() {
     async function handleSubmit(evt) {
         evt.preventDefault();
 
-        let username = currentUser.username
+        let username = currentUser.username;
         try {
             await BoonelistApi.createSale(formData, username);
             alert("sale Created!")
