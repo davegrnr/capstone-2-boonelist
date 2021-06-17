@@ -65,6 +65,15 @@ router.get("/:id", async function(req, res, next) {
     }
 });
 
+router.get("/:id", async function(req, res, next) {
+    try{
+        const comments = await Sale.getComments(req.params.id);
+        return res.json({comments});
+    } catch(err) {
+        return next(err)
+    }
+});
+
   /** Update sales data with `data`.
    *
    *
@@ -89,6 +98,20 @@ router.patch("/:id", async function (req, res, next) {
         return next(err);
         }
     });
+    
+/** POST /[id] 
+ * 
+ * Authorization: Logged in
+*/
+
+router.post("/:id", async function (req, res, next) {
+    try{
+        const comment = await Sale.createComment(req.body)
+        return res.status(201).json({ comment })
+    } catch(err) {
+        return next(err);
+    }
+})
 
 /** DELETE /[id] => {deleted: id}
  * 

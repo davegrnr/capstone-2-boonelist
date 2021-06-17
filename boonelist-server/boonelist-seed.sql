@@ -45,4 +45,21 @@ VALUES (
         'testuser',
         1,
         'Ill do it!'
+        ),
+        (
+        'testadmin',
+        2,
+        'What kinds of dogs?'
+        );
+
+INSERT INTO sales_comments(posted_by, sales_id, comment_text)
+VALUES (
+        'testuser',
+        1,
+        'How many legos?'
+        ),
+        (
+        'testadmin',
+        2,
+        'Is it made of elder wood?'
         );

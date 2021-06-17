@@ -53,6 +53,7 @@ function ServicesDetail() {
                 <NewCommentForm  
                                 username={currentUser.username}
                                 subjectId={id}
+                                route={route}
                 />
             </div>
             <button className="btn btn-primary"><Link to="/services" className="services-link" style={{textDecoration: 'none'}}>Back to All Services</Link></button>

@@ -100,7 +100,7 @@ router.patch("/:id", async function (req, res, next) {
 
 router.post("/:id", async function (req, res, next) {
     try{
-        const comment = await Service.createComment(req.params.id, req.body)
+        const comment = await Service.createComment(req.body)
         return res.status(201).json({ comment })
     } catch(err) {
         return next(err);

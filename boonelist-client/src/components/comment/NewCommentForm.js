@@ -9,21 +9,24 @@ import UserContext from "../../auth/UserContext";
  * Routed as /<services_or_sales>/:id
  */
 
-function NewCommentForm({ subjectId }) {
+function NewCommentForm({ subjectId, route }) {
     const { currentUser } = useContext(UserContext)
-
-    const [formData, setFormData] = useState({
+    const BASE_STATE = {
         commentText: "",
         subjectId: subjectId,
         postedBy: currentUser.username
-    });
+    }
+
+    const [formData, setFormData] = useState(BASE_STATE);
+
     const [formErrors, setFormErrors] = useState([]);
 
     async function handleSubmit(evt) {
         evt.preventDefault();
         console.log(formData)
         try {
-            await BoonelistApi.createServiceComment(formData, subjectId);
+            await BoonelistApi.createComment(formData, subjectId, route);
+            setFormData(BASE_STATE)
             alert('Left comment!')
         } catch(errors) {
             setFormErrors(errors)
@@ -56,7 +59,6 @@ function NewCommentForm({ subjectId }) {
                         <button 
                             className="btn btn-primary btn-sm"
                             type="submit"
-                            onSubmit={handleSubmit}
                             >Leave comment</button>
                     </div>
                 </form>

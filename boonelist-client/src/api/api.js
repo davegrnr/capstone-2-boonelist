@@ -107,9 +107,16 @@ class BoonelistApi {
 
         // Create a comment for sale or service
 
-        static async createServiceComment(data, subjectId){
-            let res = await this.request(`services/${subjectId}`, {...data}, "post");
+        static async createComment(data, subjectId, route){
+            let res = await this.request(`${route}/${subjectId}`, {...data}, "post");
             return res.comment
+        }
+
+        // Get comments of by sale_id or service_id
+
+        static async getComments(id, route){
+            let res = await this.request(`${route}/${id}`);
+            return res.comments
         }
 
 }

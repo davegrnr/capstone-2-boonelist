@@ -38,16 +38,16 @@ CREATE TABLE services_comments (
         REFERENCES users ON DELETE CASCADE,
     services_id INTEGER
         REFERENCES services ON DELETE CASCADE,
-    comment_text TEXT,
+    comment_text TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE sales_comments (
+    id SERIAL PRIMARY KEY,
     posted_by VARCHAR(25) 
         REFERENCES users ON DELETE CASCADE,
     sales_id INTEGER
         REFERENCES sales ON DELETE CASCADE,
-    PRIMARY KEY (posted_by, sales_id),
     comment_text TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );

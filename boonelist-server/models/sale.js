@@ -71,7 +71,7 @@ class Sale {
      */
 
     static async get(id){
-        const result = await db.query(
+        const saleRes = await db.query(
             `SELECT
                     item_name AS "itemName",
                     item_info AS "itemInfo",
@@ -84,12 +84,43 @@ class Sale {
             [id]
         );
 
-        const sale = result.rows[0];
+        const sale = saleRes.rows[0];
 
         if(!sale) throw new NotFoundError(`No item with id: ${id}`)
 
+        const commentsRes = await db.query(
+            `SELECT
+                    comment_text AS "commentText",
+                    posted_by AS "postedBy",
+                    created_at AS "createdAt",
+                    id
+            FROM sales_comments
+            WHERE sales_id = $1`,
+            [id]
+        );
+
+        sale.comments = commentsRes.rows;
+
         return sale;
     }
+
+    // static async getComments(id){
+    //     const result = await db.query(
+    //         `SELECT
+    //                 comment_text AS "commentText",
+    //                 posted_by AS "postedBy",
+    //                 created_at AS "createdAt"
+    //         FROM sales_comments
+    //         WHERE sales_id = $1`,
+    //         [id]
+    //     );
+
+    //     const comments = result.rows;
+
+    //     if(!sale) throw new NotFoundError(`No comments on this post yet!`)
+    //     console.log(comments)
+    //     return comments;
+    // }
 
     static async update(id, data) {
         const { setCols, values } = sqlForPartialUpdate(
@@ -116,6 +147,27 @@ class Sale {
         if (!company) throw new NotFoundError(`No company: ${id}`);
     
         return company;
+    }
+
+    static async createComment({subjectId, commentText, postedBy}){
+
+        const result = await db.query(
+            `INSERT INTO sales_comments
+            (sales_id, comment_text, posted_by)
+            VALUES ($1, $2, $3)
+            RETURNING
+            sales_id AS "subjectId",
+            comment_text AS "commentText",
+            posted_by AS "postedBy"`,
+            [
+                subjectId,
+                commentText,
+                postedBy
+            ]
+        );
+        const comment = result.rows[0]
+
+        return comment;
     }
 
         /** Delete given sale from database and return undefined
