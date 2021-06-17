@@ -27,13 +27,17 @@ function SalesDetail() {
     const [sale, setSale] = useState()
 
     useEffect(function getSaleById() {
-        console.log('david')
+
         async function getSale(){
-            let sale = (await BoonelistApi.getSale(id))
-            setSale(sale)
+            setSale(await BoonelistApi.getSale(id))
         }
         getSale();
     }, [id]);
+
+    async function getSale(id){
+        let sale = await BoonelistApi.getSale(id)
+        setSale(sale)
+    }
 
 
 
@@ -59,6 +63,7 @@ function SalesDetail() {
                                 username={currentUser.username}
                                 subjectId={id}
                                 route={route}
+                                getSale={getSale}
                 />
             </div>
             <button className="btn btn-primary"><Link to="/sales" className="sales-link" style={{textDecoration: 'none'}}>Back to All Sales</Link></button>

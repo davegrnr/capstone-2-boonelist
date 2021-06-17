@@ -9,7 +9,7 @@ import UserContext from "../../auth/UserContext";
  * Routed as /<services_or_sales>/:id
  */
 
-function NewCommentForm({ subjectId, route }) {
+function NewCommentForm({ subjectId, route, getSale, getService }) {
     const { currentUser } = useContext(UserContext)
     const BASE_STATE = {
         commentText: "",
@@ -18,8 +18,8 @@ function NewCommentForm({ subjectId, route }) {
     }
 
     const [formData, setFormData] = useState(BASE_STATE);
-    
-    // const [formErrors, setFormErrors] = useState([]);
+
+    const [formErrors, setFormErrors] = useState([]);
 
     async function handleSubmit(evt) {
         evt.preventDefault();
@@ -27,6 +27,7 @@ function NewCommentForm({ subjectId, route }) {
         try {
             await BoonelistApi.createComment(formData, subjectId, route);
             setFormData(BASE_STATE)
+            (route === 'sales' ? getSale(subjectId) : getService(subjectId))
             alert('Left comment!')
         } catch(errors) {
             setFormErrors(errors)

@@ -5,6 +5,7 @@ import './CommentCardList.css'
 
 
 function CommentCardList({ comments, route }){
+    console.log(comments)
     return (
         <div className="CommentCardList">
             {comments.map(comment => (
@@ -17,6 +18,11 @@ function CommentCardList({ comments, route }){
                     createdAt={comment.createdAt}
                 />
             ))}
+                {/* <div className="comment-form">
+                <NewCommentForm
+                    route={route}
+                />
+            </div> */}
         </div>
     )
 }

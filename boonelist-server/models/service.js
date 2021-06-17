@@ -83,6 +83,19 @@ class Service {
 
         if(!service) throw new NotFoundError(`No service with id: ${id}`)
 
+        const commentsRes = await db.query(
+            `SELECT
+                    comment_text AS "commentText",
+                    posted_by AS "postedBy",
+                    created_at AS "createdAt",
+                    id
+            FROM services_comments
+            WHERE services_id = $1`,
+            [id]
+        );
+
+        service.comments = commentsRes.rows
+
         return service
     }
 
@@ -137,28 +150,28 @@ class Service {
         return comment;
     }
 
-    static async createServiceComment({subjectId, commentText, postedBy}) {
+    // static async createServiceComment(subjectId, commentText, postedBy) {
 
-        const result = await db.query(
-            `INSERT INTO services_comments
-            (services_id, comment_text posted_by)
-            VALUES ($1, $2, $3)
-            RETURNING 
-            services_id AS "servicesId", 
-            comment_text AS "commentText", 
-            posted_by as "postedBy"`,
-            [
-                subjectId,
-                commentText,
-                postedBy
-            ]
-        );
+    //     const result = await db.query(
+    //         `INSERT INTO services_comments
+    //         (services_id, comment_text posted_by)
+    //         VALUES ($1, $2, $3)
+    //         RETURNING 
+    //         services_id AS "servicesId", 
+    //         comment_text AS "commentText", 
+    //         posted_by as "postedBy"`,
+    //         [
+    //             subjectId,
+    //             commentText,
+    //             postedBy
+    //         ]
+    //     );
 
 
-        const comment = result.rows[0];
+    //     const comment = result.rows[0];
 
-        return comment;
-    }
+    //     return comment;
+    // }
 
     /** Delete given service from database and return undefined
      * 

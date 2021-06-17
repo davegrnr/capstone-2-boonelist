@@ -4,6 +4,7 @@ import UserContext from '../../auth/UserContext'
 import BoonelistApi from '../../api/api'
 import LoadingSpinner from '../../common/LoadingSpinner'
 import NewCommentForm from '../comment/NewCommentForm';
+import CommentCardList from '../comment/CommentCardList'
 import './ServicesDetail.css'
 
 /** Service Detail page
@@ -22,7 +23,7 @@ function ServicesDetail() {
     const {currentUser} = useContext(UserContext)
     const route = 'services'
 
-    const [service, setService] = useState(null)
+    const [service, setService] = useState()
 
     useEffect(function getServiceById() {
         async function getService(){
@@ -31,6 +32,11 @@ function ServicesDetail() {
 
         getService();
     }, [id]);
+
+    async function getService(id){
+        let service = await BoonelistApi.getService(id)
+        setService(service)
+    }
 
     if(!service) return <LoadingSpinner />
     
@@ -41,19 +47,18 @@ function ServicesDetail() {
                 <h1>{service.title}</h1>
                 <h3>${service.pay}</h3>
                 <p>{service.serviceInfo}</p>
-                <p>Path: {route}</p>
-                <p>ID : {id}</p>
-                <p>User: {currentUser.username}</p>
             </div>
             <hr />
             <div className="comments">
                 <p>Comments</p>
+                <CommentCardList comments={service.comments}/>
             </div>
             <div className="comment-form">
                 <NewCommentForm  
                                 username={currentUser.username}
                                 subjectId={id}
                                 route={route}
+                                getService={getService}
                 />
             </div>
             <button className="btn btn-primary"><Link to="/services" className="services-link" style={{textDecoration: 'none'}}>Back to All Services</Link></button>
