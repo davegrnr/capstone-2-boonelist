@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
+import ImageUploader from 'react-images-upload';
 import Alert from '../../common/Alert'
 import BoonelistApi from '../../api/api'
 import UserContext from '../../auth/UserContext'
@@ -19,8 +20,9 @@ function NewSaleForm() {
 
     const [formData, setFormData] = useState({
         itemName: "",
-        payitemInfo: "",
+        itemInfo: "",
         price: "",
+
     });
     const [formErrors, setFormErrors] = useState([]);
 
@@ -53,6 +55,7 @@ function NewSaleForm() {
         const { name, value } = evt.target;
         setFormData(f => ({...f, [name]: value}))
     }
+
 
 
     return (
@@ -90,6 +93,17 @@ function NewSaleForm() {
                         onChange={handleChange}
                     />
                 </div>
+                {/* <div className="form-group">
+                    <label>Upload Pictures</label>
+                    <ImageUploader
+                        name="pictures"
+                        withIcon={false}
+                        buttonText='Choose images'
+                        onChange={handleChange}
+                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                        maxFileSize={5242880}
+                    />
+                </div> */}
 
                 {formErrors.length
                     ? <Alert type="danger" messages={formErrors} />

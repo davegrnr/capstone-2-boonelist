@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import BoonelistApi from '../../api/api'
 import SalesCard from './SalesCard'
 import LoadingSpinner from '../../common/LoadingSpinner'
+import './SalesList.css'
 
 function SalesList() {
     const [sales, setSales] = useState()
@@ -14,6 +15,16 @@ function SalesList() {
     async function search(itemName){
         let sales = await BoonelistApi.getSales(itemName)
         setSales(sales);
+    }
+
+    function handleDate(date){
+        const dateFormat = new Date(date).toLocaleDateString('en-us',
+        {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })
+        return dateFormat;
     }
 
     if(!sales) return <LoadingSpinner />
@@ -36,6 +47,7 @@ function SalesList() {
                             price={s.price}
                             createdAt={s.createdAt}
                             postedBy={s.postedBy}
+                            handleDate={handleDate}
                         />
                     ))}
                     </div>

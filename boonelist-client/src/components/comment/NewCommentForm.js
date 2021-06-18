@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react"
 import BoonelistApi from "../../api/api";
 import UserContext from "../../auth/UserContext";
+import './NewCommentForm.css'
 
 /** New Comment Form
  * 
@@ -46,7 +47,7 @@ function NewCommentForm({ subjectId, route, getSale, getService }) {
     return (
         <div className="NewCommentForm">
             <div className="container">
-                <h4>Leave a comment</h4>
+                <h4 id="comment-form-header">Leave a comment</h4>
                 <form onSubmit={handleSubmit}>
                     <div className="card">
                         <div className="card-body">
@@ -58,7 +59,7 @@ function NewCommentForm({ subjectId, route, getSale, getService }) {
                             />
                         </div>
                         <button 
-                            className="btn btn-primary btn-sm"
+                            className="btn comment-btn btn-primary btn-sm"
                             type="submit"
                             >Leave comment</button>
                     </div>

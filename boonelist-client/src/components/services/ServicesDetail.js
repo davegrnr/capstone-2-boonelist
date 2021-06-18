@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
+import Sticky from "react-sticky-el"
 import UserContext from '../../auth/UserContext'
 import BoonelistApi from '../../api/api'
 import LoadingSpinner from '../../common/LoadingSpinner'
@@ -38,6 +39,18 @@ function ServicesDetail() {
         setService(service)
     }
 
+    function handleDate(date){
+        const dateFormat = new Date(date).toLocaleDateString('en-us',
+        {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        })
+        return dateFormat;
+    }
+
     if(!service) return <LoadingSpinner />
     
 
@@ -47,21 +60,30 @@ function ServicesDetail() {
                 <h1>{service.title}</h1>
                 <h3>${service.pay}</h3>
                 <p>{service.serviceInfo}</p>
-            </div>
-            <hr />
-            <div className="comments">
-                <p>Comments</p>
-                <CommentCardList comments={service.comments}/>
-            </div>
-            <div className="comment-form">
-                <NewCommentForm  
-                                username={currentUser.username}
-                                subjectId={id}
-                                route={route}
-                                getService={getService}
-                />
+                <p>Posted by: {service.postedBy}</p>
+                <p>Posted on: {handleDate(service.createdAt)}</p>
             </div>
             <button className="btn btn-primary"><Link to="/services" className="services-link" style={{textDecoration: 'none'}}>Back to All Services</Link></button>
+            <hr />
+            <div>
+            <div className="comments">
+                <div className="comment-form">
+                <h3 id="comment-header">Comments</h3>
+                <br />
+                <Sticky>
+                    <NewCommentForm  
+                                    username={currentUser.username}
+                                    subjectId={id}
+                                    route={route}
+                                    getService={getService}
+                    />
+                </Sticky>
+            </div>
+                <CommentCardList comments={service.comments}/>
+            </div>
+
+            </div>
+            
         </div>
     )
 }

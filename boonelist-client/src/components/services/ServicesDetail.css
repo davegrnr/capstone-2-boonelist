@@ -1,3 +1,15 @@
+.ServicesDetail {
+	height: 100%;
+}
+
+.back-btn {
+	margin: auto;
+}
+
+.comments {
+	height: 100%;
+}
+
 .services-link {
 	color: white;
 	text-decoration: none;

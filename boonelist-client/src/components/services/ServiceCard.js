@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './ServiceCard.css'
 
-function ServiceCard({id, title, pay, serviceInfo, postedBy, createdAt}) {
+function ServiceCard({id, title, pay, serviceInfo, postedBy, createdAt, handleDate}) {
 
     return(
 
@@ -14,7 +14,7 @@ function ServiceCard({id, title, pay, serviceInfo, postedBy, createdAt}) {
                         </h5>
                     </Link>
                     <p>${pay}</p>
-                    <p>Posted :{createdAt}</p>
+                    <p>Posted: {handleDate(createdAt)}</p>
                 </div>
             </div>
 

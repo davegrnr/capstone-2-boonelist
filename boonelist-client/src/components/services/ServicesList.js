@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import BoonelistApi from '../../api/api'
 import ServiceCard from './ServiceCard'
 import LoadingSpinner from '../../common/LoadingSpinner'
+import './ServicesList.css'
 
 function ServicesList() {
     const [services, setServices] = useState()
@@ -14,6 +15,16 @@ function ServicesList() {
     async function search(title){
         let services = await BoonelistApi.getServices(title)
         setServices(services);
+    }
+
+    function handleDate(date){
+        const dateFormat = new Date(date).toLocaleDateString('en-us',
+        {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })
+        return dateFormat;
     }
 
 
@@ -38,6 +49,7 @@ function ServicesList() {
                             pay={s.pay}
                             postedBy={s.postedBy}
                             createdAt={s.createdAt}
+                            handleDate={handleDate}
                         />
                     ))}
 

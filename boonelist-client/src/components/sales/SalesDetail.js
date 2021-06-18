@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from "react-router-dom";
+import Sticky from 'react-sticky-el'
 import BoonelistApi from '../../api/api'
 import UserContext from '../../auth/UserContext';
 import NewCommentForm from '../comment/NewCommentForm';
@@ -39,7 +40,17 @@ function SalesDetail() {
         setSale(sale)
     }
 
-
+    function handleDate(date){
+        const dateFormat = new Date(date).toLocaleDateString('en-us',
+        {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        })
+        return dateFormat;
+    }
 
 
     if(!sale) return <LoadingSpinner />
@@ -50,23 +61,30 @@ function SalesDetail() {
                 <h1>{sale.itemName}</h1>
                 <h3>${sale.price}</h3>
                 <p>{sale.itemInfo}</p>
+                <p>Posted by: {sale.postedBy}</p>
+                <p>Posted on: {handleDate(sale.createdAt)}</p>
+                {/* <img src={sale.pictures}></img> */}
             </div>
+            <button className="btn back-btn btn-primary"><Link to="/sales" className="sales-link" style={{textDecoration: 'none'}}>Back to All Sales</Link></button>
             <hr />
             <div className="comments">
-                <p>Comments</p>
+
+                <div className="comment-form">
+                <h3 id="comment-header">Comments</h3>
+                <br />
+                <Sticky >
+                    <NewCommentForm  
+                                    username={currentUser.username}
+                                    subjectId={id}
+                                    route={route}
+                                    getSale={getSale}
+                    />
+                </Sticky>
+            </div>
                 <CommentCardList comments={sale.comments}
                 />
             </div>
 
-            <div className="comment-form">
-                <NewCommentForm  
-                                username={currentUser.username}
-                                subjectId={id}
-                                route={route}
-                                getSale={getSale}
-                />
-            </div>
-            <button className="btn btn-primary"><Link to="/sales" className="sales-link" style={{textDecoration: 'none'}}>Back to All Sales</Link></button>
         </div>
 
     )

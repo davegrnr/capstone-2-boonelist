@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import './SalesCard.css'
 
-function SalesCard({id, name, price, info, postedBy, createdAt}) {
+function SalesCard({id, name, price, info, postedBy, createdAt, handleDate}) {
 
     return(
         <div className="SalesCard card card mb-2 mt-4" to={`/sales/${id}`}>
@@ -12,7 +13,7 @@ function SalesCard({id, name, price, info, postedBy, createdAt}) {
                     </h5>
                 </Link>
                 <p>${price}</p>
-                <p>Posted: {createdAt}</p>
+                <p>Posted: {handleDate(createdAt)}</p>
 
             </div>
         </div>

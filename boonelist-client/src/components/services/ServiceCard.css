@@ -1,4 +1,10 @@
-.card {
+.ServiceCard {
 	margin: auto;
 	width: 50%;
+	border: 1.5px groove lightslategray;
+	border-radius: 20px;
+}
+
+.ServiceCard:hover {
+	background-color: rgb(219, 219, 219);
 }
