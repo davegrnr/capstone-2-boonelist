@@ -24,7 +24,6 @@ function NewCommentForm({ subjectId, route, getSale, getService }) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        console.log(formData)
         try {
             await BoonelistApi.createComment(formData, subjectId, route);
             setFormData(BASE_STATE)

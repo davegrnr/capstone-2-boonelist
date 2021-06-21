@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Alert from '../../common/Alert'
 import BoonelistApi from '../../api/api'
 import UserContext from '../../auth/UserContext'
+import './ProfileForm.css'
 
 function ProfileForm(){
     const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -62,7 +63,7 @@ function ProfileForm(){
     }
 
     return (
-        <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+        <div className="ProfileForm">
         <h3>Profile</h3>
         <div className="card">
             <div className="card-body">
@@ -71,7 +72,7 @@ function ProfileForm(){
                 <label>Username</label>
                 <p className="form-control-plaintext">{formData.username}</p>
                 </div>
-                <div className="form-group">
+                <div className="form-group input-container">
                 <label>First Name</label>
                 <input
                     name="firstName"
@@ -80,7 +81,7 @@ function ProfileForm(){
                     onChange={handleChange}
                 />
                 </div>
-                <div className="form-group">
+                <div className="form-group input-container">
                 <label>Last Name</label>
                 <input
                     name="lastName"
@@ -89,7 +90,7 @@ function ProfileForm(){
                     onChange={handleChange}
                 />
                 </div>
-                <div className="form-group">
+                <div className="form-group input-container">
                 <label>Email</label>
                 <input
                     name="email"
@@ -98,7 +99,7 @@ function ProfileForm(){
                     onChange={handleChange}
                 />
                 </div>
-                <div className="form-group">
+                <div className="form-group input-container">
                 <label>Phone</label>
                 <input
                     name="phone"
@@ -107,7 +108,7 @@ function ProfileForm(){
                     onChange={handleChange}
                 />
                 </div>
-                <div className="form-group">
+                <div className="form-group input-container">
                 <label>Confirm password to make changes:</label>
                 <input
                     type="password"

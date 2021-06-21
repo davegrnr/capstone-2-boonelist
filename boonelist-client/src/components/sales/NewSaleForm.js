@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { useAlert } from "react-alert"
 import ImageUploader from 'react-images-upload';
 import Alert from '../../common/Alert'
 import BoonelistApi from '../../api/api'
@@ -28,6 +29,8 @@ function NewSaleForm() {
 
     const [saveConfirmed, setSaveConfirmed] = useState(false);
 
+    const alert = useAlert()
+
     /** On form submit:
      *  - Attempt save to backend, report any errors
      *  -On success:
@@ -41,7 +44,7 @@ function NewSaleForm() {
         let username = currentUser.username;
         try {
             await BoonelistApi.createSale(formData, username);
-            alert("sale Created!")
+            alert.show('Sale created', {type: 'success'})
         } catch(errors){
             setFormErrors(errors);
             return
@@ -62,7 +65,7 @@ function NewSaleForm() {
         <div className="NewSaleForm">
         <div className="container">
             <h2 className="mb-3">Post New Sale</h2>
-            <div className="card">
+            <div className="card new-sale-card">
             <div className="card-body">
                 <form onSubmit={handleSubmit}>
                 <div className="form-group">

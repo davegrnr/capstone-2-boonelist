@@ -119,6 +119,13 @@ class BoonelistApi {
             return res.comments
         }
 
+        // Deletes a post by id and route specification
+
+        static async remove(id, route){
+            let res = await this.request(`${route}/${id}`, {}, "delete")
+            return res.sale
+        }
+
 }
 
 // BoonelistApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyMjcyNTg0Mn0.nJsOKBaufn81VX7rL70oev_KemBmKE5sSwk6S3Ax_wk"

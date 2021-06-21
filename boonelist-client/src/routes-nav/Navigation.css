@@ -24,6 +24,7 @@ nav a {
 	text-decoration: none;
 	border: 5px solid transparent;
 	font-weight: bold;
+	transition: .2s;
 }
 
 nav a.active {
@@ -38,6 +39,8 @@ nav a.active:hover {
 nav a:hover {
 	text-decoration: none;
 	color: #f0f2f5;
+	transition: .2s;
+	transform: scale(1.2);
 }
 
 nav a.active.navbar-brand {

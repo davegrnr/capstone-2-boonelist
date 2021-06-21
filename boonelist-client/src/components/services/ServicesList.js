@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import BoonelistApi from '../../api/api'
 import ServiceCard from './ServiceCard'
 import LoadingSpinner from '../../common/LoadingSpinner'
+import greenPlus from '../../icons/greenPlus.png'
 import './ServicesList.css'
 
 function ServicesList() {
@@ -34,26 +35,37 @@ function ServicesList() {
         <div className="ServicesList">
             <h1>Services</h1>
             <div className="NewServiceForm-link">
-                <Link to="/services/new">Post New Service</Link>
+                <Link to="/services/new">
+                    <p className="zoom-2">
+                    <img src={greenPlus} 
+                    className="greenPlus popout zoom"/>
+                    Post New Service
+                    </p>
+                </Link>
+                    
             </div>
             {services.length
             ? (
                 
                 <div className="ServicesList-list">
+                    <div className="row">
                     {services.map(s => (
-                        <ServiceCard
-                            key={s.id}
-                            id={s.id}
-                            title={s.title}
-                            info={s.serviceInfo}
-                            pay={s.pay}
-                            postedBy={s.postedBy}
-                            createdAt={s.createdAt}
-                            handleDate={handleDate}
-                        />
+                        <div className="col-lg-4">
+                            <ServiceCard
+                                key={s.id}
+                                id={s.id}
+                                title={s.title}
+                                info={s.serviceInfo}
+                                pay={s.pay}
+                                postedBy={s.postedBy}
+                                createdAt={s.createdAt}
+                                route={'services'}
+                                handleDate={handleDate}
+                            />
+                        </div>
                     ))}
-
                     </div>
+                </div>
             ) : (
                 <p className="lead">Sorry, no results found!</p>
             )}

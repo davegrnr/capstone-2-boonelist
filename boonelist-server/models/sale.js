@@ -58,7 +58,7 @@ class Sale {
                     liked_by AS "likedBy",
                     created_at AS "createdAt"
             FROM sales
-            ORDER BY created_at`
+            ORDER BY created_at DESC`
         );
 
         return result.rows;

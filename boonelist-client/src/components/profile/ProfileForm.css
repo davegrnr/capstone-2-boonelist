@@ -1,6 +1,17 @@
+.ProfileForm {
+	margin: auto;
+	width: 50%;
+}
+
 .card {
-	width: 100%;
+	width: 75%;
 	border-width: 4px;
+	margin: auto;
+}
+
+.input-container {
+	width: 50%;
+	margin: auto;
 }
 
 label {
@@ -9,6 +20,8 @@ label {
 
 input {
 	text-align: center;
+	width: 200px;
+	color: red;
 }
 
 hr {

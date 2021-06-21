@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { useAlert } from "react-alert"
 import Alert from '../../common/Alert'
 import BoonelistApi from '../../api/api'
 import UserContext from '../../auth/UserContext'
+import './NewServiceForm.css'
 
 /** New service form
  * Submitting the form creates a new service with the provided data.
@@ -25,6 +27,8 @@ function NewServiceForm() {
 
     const [saveConfirmed, setSaveConfirmed] = useState(false);
 
+    const alert = useAlert()
+
     /** On form submit:
      *  - Attempt save to backend, report any errors
      *  -On success:
@@ -38,7 +42,7 @@ function NewServiceForm() {
         let username = currentUser.username
         try {
             await BoonelistApi.createService(formData, username);
-            alert("Service Created!")
+            alert.show('Service created!', {type: 'success'})
         } catch(errors){
             setFormErrors(errors);
             return
@@ -55,10 +59,10 @@ function NewServiceForm() {
 
 
     return (
-        <div className="SignupForm">
-        <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+        <div className="NewServiceForm">
+        <div className="container ">
             <h2 className="mb-3">Post New Service</h2>
-            <div className="card">
+            <div className="card new-service-card">
             <div className="card-body">
                 <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -97,7 +101,7 @@ function NewServiceForm() {
 
                 <button
                     type="submit"
-                    className="btn btn-primary float-right"
+                    className="btn btn-primary"
                     onSubmit={handleSubmit}
                 >
                     Submit
