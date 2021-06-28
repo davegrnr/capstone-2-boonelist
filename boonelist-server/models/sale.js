@@ -95,7 +95,8 @@ class Sale {
                     created_at AS "createdAt",
                     id
             FROM sales_comments
-            WHERE sales_id = $1`,
+            WHERE sales_id = $1
+            ORDER BY created_at DESC`,
             [id]
         );
 
@@ -168,6 +169,21 @@ class Sale {
         const comment = result.rows[0]
 
         return comment;
+    }
+
+    /** Delete sale comment from database and return undefined */
+
+    static async removeComment(commentId){
+        const result = await db.query(
+            `DELETE FROM sales_comments
+            WHERE id = $1
+            RETURNING id`,
+            [commentId]
+        );
+        
+        const comment = result.rows[0];
+
+        if(!comment) throw new NotFoundError(`No comment with id: ${commentId}`)
     }
 
         /** Delete given sale from database and return undefined

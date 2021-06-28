@@ -128,5 +128,16 @@ router.delete("/:id", async function(req, res, next) {
     }
 })
 
+/** DELETE /[id] => {deleted: commentId} */
+
+router.delete("/:id/:commentId", async function(req, res, next) {
+    try {
+        await Sale.removeComment(req.params.commentId);
+        return res.json({deleted: req.body.commentId})
+    } catch(err) {
+        return next(err)
+    }
+})
+
 
 module.exports = router;

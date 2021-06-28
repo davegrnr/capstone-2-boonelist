@@ -107,6 +107,15 @@ router.post("/:id", async function (req, res, next) {
     }
 })
 
+router.delete("/:id/:commentId", async function(req, res, next) {
+    try {
+        await Service.removeComment(req.params.commentId);
+        return res.json({deleted: req.body.commentId})
+    } catch(err) {
+        return next(err)
+    }
+})
+
 
 /** DELETE /[id] => {deleted: id}
  * 

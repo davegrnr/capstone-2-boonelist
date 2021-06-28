@@ -90,7 +90,8 @@ class Service {
                     created_at AS "createdAt",
                     id
             FROM services_comments
-            WHERE services_id = $1`,
+            WHERE services_id = $1
+            ORDER BY created_at DESC`,
             [id]
         );
 
@@ -179,6 +180,21 @@ class Service {
      * 
      * @param {*} id 
      */
+
+        /** Delete service comment from database and return undefined */
+
+        static async removeComment(commentId){
+            const result = await db.query(
+                `DELETE FROM services_comments
+                WHERE id = $1
+                RETURNING id`,
+                [commentId]
+            );
+            
+            const comment = result.rows[0];
+    
+            if(!comment) throw new NotFoundError(`No comment with id: ${commentId}`)
+        }
 
     static async remove(id){
         const result = await db.query(

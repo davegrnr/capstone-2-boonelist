@@ -126,6 +126,13 @@ class BoonelistApi {
             return res.sale
         }
 
+        // Deletes comment by id and route specification
+
+        static async removeComment(route, id, commentId){
+            let res = await this.request(`${route}/${id}/${commentId}`, {}, "delete")
+            return res.comment
+        }
+
 }
 
 // BoonelistApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyMjcyNTg0Mn0.nJsOKBaufn81VX7rL70oev_KemBmKE5sSwk6S3Ax_wk"

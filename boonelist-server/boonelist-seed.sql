@@ -28,16 +28,18 @@ VALUES ('Lawn Care',
         'testuser'
         );
 
-INSERT INTO sales (item_name, item_info, price)
+INSERT INTO sales (item_name, item_info, price, posted_by)
 VALUES (
         'Legos',
         'Dont step on them!',
-        33
+        33,
+        'testadmin'
         ),
         (
         'Rocking chair',
         'Great condition',
-        70
+        70,
+        'testuser'
         );
 
 INSERT INTO services_comments(posted_by, services_id, comment_text)

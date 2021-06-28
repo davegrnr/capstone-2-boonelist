@@ -92,7 +92,11 @@ function ServicesDetail() {
                         />
                     </Sticky>
                 </div>
-                    <CommentCardList comments={service.comments}/>
+                    <CommentCardList comments={service.comments}
+                                    route={route}
+                                    getService={getService}
+                    />
+
                 </div>
     
                 </div>
@@ -131,7 +135,10 @@ function ServicesDetail() {
                         />
                     </Sticky>
                 </div>
-                    <CommentCardList comments={service.comments}/>
+                    <CommentCardList comments={service.comments}
+                                    route={route}
+                                    getService={getService}
+                    />
                 </div>
     
                 </div>

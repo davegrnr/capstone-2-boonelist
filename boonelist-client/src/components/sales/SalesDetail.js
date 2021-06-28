@@ -98,6 +98,8 @@ function SalesDetail() {
                     </Sticky>
                 </div>
                     <CommentCardList comments={sale.comments}
+                                    route={route}
+                                    
                     />
                 </div>
             </div>
@@ -136,6 +138,8 @@ function SalesDetail() {
                     </Sticky>
                 </div>
                     <CommentCardList comments={sale.comments}
+                                    route={route}
+                                    getSale={getSale}
                     />
                 </div>
             </div>
