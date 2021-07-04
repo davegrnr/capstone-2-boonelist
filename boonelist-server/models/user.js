@@ -29,6 +29,7 @@ class User {
                   first_name AS "firstName",
                   last_name AS "lastName",
                   email,
+                  phone,
                   is_admin AS "isAdmin"
            FROM users
            WHERE username = $1`,
