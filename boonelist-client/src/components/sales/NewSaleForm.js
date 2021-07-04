@@ -29,7 +29,9 @@ function NewSaleForm() {
 
     const [saveConfirmed, setSaveConfirmed] = useState(false);
 
-    const alert = useAlert()
+     const alert = /* istanbul ignore next */ useAlert()
+    
+    
 
     /** On form submit:
      *  - Attempt save to backend, report any errors
