@@ -25,7 +25,6 @@ function NewServiceForm() {
     });
     const [formErrors, setFormErrors] = useState([]);
 
-    const [saveConfirmed, setSaveConfirmed] = useState(false);
 
     const alert = useAlert()
 

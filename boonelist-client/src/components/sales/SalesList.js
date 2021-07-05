@@ -35,7 +35,8 @@ function SalesList() {
             <h1>Items for Sale</h1>
             <div className="NewSalesForm-link">
             <Link to="/sales/new">
-                    <img src={greenPlus} 
+                    <img src={greenPlus}
+                    alt="greenPlus" 
                     className="greenPlus popout zoom"/>
                     Post New Item For Sale</Link>
             </div>

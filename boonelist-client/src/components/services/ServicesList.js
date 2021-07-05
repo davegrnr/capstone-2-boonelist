@@ -38,6 +38,7 @@ function ServicesList() {
                 <Link to="/services/new">
                     <p className="zoom-2">
                     <img src={greenPlus} 
+                    alt="greenPlus"
                     className="greenPlus popout zoom"/>
                     Post New Service
                     </p>

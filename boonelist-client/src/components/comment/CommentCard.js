@@ -7,12 +7,15 @@ import './CommentCard.css'
 function CommentCard({ commentId, route, commentText, postedBy, createdAt, getSale, getService }){
     const currentUser = useContext(UserContext).currentUser
     const {id} = useParams()
-    console.log(route)
 
     async function handleRemoveComment(){
         try{
             await BoonelistApi.removeComment(route, id, commentId)
-            (route === 'sales' ? getSale(id) : getService(id))
+            if(route === 'services'){
+                getService(id)
+            } else {
+                getSale(id)
+            }
         } catch(err){
             return (err)
         }

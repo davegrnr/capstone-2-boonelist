@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useAlert } from "react-alert"
-import ImageUploader from 'react-images-upload';
+// import ImageUploader from 'react-images-upload';
 import Alert from '../../common/Alert'
 import BoonelistApi from '../../api/api'
 import UserContext from '../../auth/UserContext'
@@ -27,11 +27,9 @@ function NewSaleForm() {
     });
     const [formErrors, setFormErrors] = useState([]);
 
-    const [saveConfirmed, setSaveConfirmed] = useState(false);
 
-     const alert = /* istanbul ignore next */ useAlert()
     
-    
+    const alert = useAlert()
 
     /** On form submit:
      *  - Attempt save to backend, report any errors
