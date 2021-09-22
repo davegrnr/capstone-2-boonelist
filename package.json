@@ -6,7 +6,7 @@
     "scripts": {
       "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
       "client": "cd boonelist-client && npm start",
-      "server": "cd boonelist-server && nodemon server.js",
+      "server": "cd boonelist-server && node server.js",
       "test": "jest -i"
     },
     "author": "david garner",
