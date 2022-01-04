@@ -1,8 +1,12 @@
+.DS_Store
+/boonelist-server/config.js
+
 
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
 
 # testing
 /coverage
@@ -12,6 +16,7 @@
 
 # misc
 config.js
+npm-debug.log*
 .DS_Store
 .env.local
 .env.development.local
